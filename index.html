@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>YunDev Portfólio</title>
+<title>YunDev</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="Portfólio de João Vitor Alves, o Yun Dev: desenvolvimento, design e tecnologia que resolve de verdade.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -233,6 +233,17 @@ section,header,footer{position:relative}
 .card-meta span{display:inline-flex;align-items:center;gap:6px}
 .proj-more{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px;margin-top:34px}
 .proj-more p{color:var(--mute);max-width:52ch}
+/* ---------- github ao vivo ---------- */
+#gh-grid [hidden]{display:none!important}
+.live{display:inline-flex;align-items:center;gap:10px;font-family:var(--f-mono);font-size:12px;letter-spacing:.04em;color:var(--cm)}
+.live i{width:9px;height:9px;border-radius:50%;background:var(--sun);box-shadow:0 0 0 0 rgba(230,34,28,.65);animation:ghpulse 1.9s ease-out infinite;flex:none}
+.live.off i{animation:none;box-shadow:none;background:var(--cm)}
+@keyframes ghpulse{70%{box-shadow:0 0 0 9px rgba(230,34,28,0)}100%{box-shadow:0 0 0 0 rgba(230,34,28,0)}}
+.gh-commit{font-family:var(--f-mono);font-size:13px;line-height:1.5;color:var(--cm);padding-left:12px;border-left:2px solid var(--sun);max-width:58ch;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.card-meta .m-when{margin-left:auto}
+.card-meta .m-pin{color:var(--sun)}
+@media (max-width:560px){.card-meta{flex-wrap:wrap;gap:8px 16px}.card-meta .m-when{margin-left:0;flex-basis:100%}}
+@media (prefers-reduced-motion:reduce){.live i{animation:none}}
 
 /* ---------- case ux ---------- */
 .status{display:inline-flex;align-items:center;gap:10px;width:fit-content;padding:8px 16px;border:1px solid var(--line-ink);border-radius:999px;font-family:var(--f-mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase}
@@ -351,6 +362,65 @@ html.lb-open{overflow:hidden}
 .srv-hours{margin-top:18px;display:flex;align-items:center;gap:12px;color:var(--mute);font-size:14px}
 .srv-hours .i{color:var(--sun)}
 
+/* ---------- planos ---------- */
+.plans{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:16px;align-items:stretch}
+.plan{grid-column:span 2;position:relative;isolation:isolate;overflow:hidden;display:flex;flex-direction:column;gap:22px;padding:clamp(22px,2.4vw,32px);border:1px solid var(--line);border-radius:24px;background:var(--ink-2);transition:transform .4s var(--ease),border-color .3s}
+.plan--half{grid-column:span 3}
+.plan::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),rgba(230,34,28,.26),transparent 62%);opacity:0;transition:opacity .3s}
+.plan:hover{transform:translateY(-5px);border-color:var(--sun)}
+.plan:hover::before{opacity:1}
+.plan-top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.plan-n{font-family:var(--f-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+.plan-tag{padding:6px 12px;border:1px solid var(--line);border-radius:999px;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--mute);white-space:nowrap}
+.plan h3{font-size:clamp(24px,2.4vw,30px);font-weight:800;letter-spacing:-.035em;line-height:1.05;text-wrap:balance}
+.plan-desc{color:var(--mute);font-size:15.5px;max-width:44ch}
+.plan-price{display:grid;gap:8px;padding-block:18px;border-block:1px solid var(--line)}
+.plan-price small{font-size:11px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--mute)}
+.plan-val{font-size:clamp(32px,3.4vw,46px);font-weight:800;letter-spacing:-.045em;line-height:1;font-variant-numeric:tabular-nums;white-space:nowrap}
+.plan-val sup{font-size:.4em;letter-spacing:0;color:var(--sun);vertical-align:top;margin-right:.3em;position:relative;top:.35em}
+.plan-val--txt{font-size:clamp(26px,2.6vw,34px);white-space:normal}
+.plan .checks{margin:0;flex:1;align-content:start}
+.plan .checks li{font-size:15.5px}
+.plan .btn{width:100%}
+
+/* destaque: papel sobre tinta, como o bloco de mensagem do case */
+.plan--feat{background-color:var(--paper);background-image:var(--grain);color:var(--on-paper);--mute:var(--mute-paper);--line:var(--line-paper);border-color:transparent}
+.plan--feat::before{background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),rgba(230,34,28,.16),transparent 62%)}
+.plan--feat .plan-tag{background:var(--ink);border-color:var(--ink);color:var(--on-ink)}
+
+/* especial devs: clima de terminal */
+.plan--dev{background:var(--ink-3)}
+.plan-dots{display:flex;gap:7px}
+.plan-dots i{width:10px;height:10px;border-radius:50%;background:var(--sun)}
+.plan-dots i:nth-child(2){background:var(--paper)}
+.plan-dots i:nth-child(3){background:var(--rose)}
+.plan-code{font-family:var(--f-mono);font-size:13px;line-height:1.7;color:var(--mute-ink);overflow-wrap:anywhere}
+.plan-code b{font-weight:500;color:var(--sun)}
+.plan-code span{color:#6aa5ff}
+
+/* personalizado: borda tracejada, sem fundo */
+.plan--custom{border-style:dashed;background:transparent}
+.plan--custom .hand{justify-self:start;font-size:28px}
+
+.plans-note{display:flex;align-items:center;gap:12px;margin-top:26px;color:var(--mute);font-size:14px}
+.plans-note .i{color:var(--sun);width:14px;height:14px;flex:none}
+
+@media (max-width:960px){
+  .plans{grid-template-columns:minmax(0,1fr)}
+  .plan,.plan--half{grid-column:auto}
+}
+
+/* planos mensais (recorrência) */
+.plans-sub{margin-top:clamp(56px,7vw,92px)}
+.plans-sub-head{display:grid;gap:10px;max-width:640px;margin-bottom:clamp(26px,3.4vw,40px)}
+.plans-sub-k{font-family:var(--f-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--sun)}
+.plans-sub-h{font-size:clamp(26px,3vw,38px);font-weight:800;letter-spacing:-.035em;line-height:1.05;text-wrap:balance}
+.plans-sub-p{color:var(--mute);font-size:16px;max-width:56ch}
+.plan--rec{gap:18px}
+.plan--rec .plan-val{font-size:clamp(28px,3vw,38px)}
+.plan-val em{font-style:normal;font-weight:600;font-size:.4em;letter-spacing:0;color:var(--mute);margin-left:.4em}
+.plans-sub .plans-note{margin-top:22px}
+
 /* ---------- contato ---------- */
 .contact{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,5vw,80px);align-items:start}
 .contact-copy{display:grid;gap:26px}
@@ -394,6 +464,16 @@ html.lb-open{overflow:hidden}
 .foot-bot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:14px;margin-top:26px;padding-top:20px;border-top:1px solid var(--line-ink);font-size:13px;color:var(--mute-ink)}
 .foot-bot a{display:inline-flex;align-items:center;gap:8px;text-decoration:none}
 .foot-bot a:hover{color:var(--on-ink)}
+
+/* ---------- cartão do linkedin (rodapé) ---------- */
+.liprof{display:flex;align-items:center;flex-wrap:wrap;gap:18px 22px;margin-bottom:30px;padding:18px 22px;border:1px solid var(--line-ink);border-radius:22px;background:var(--ink-2)}
+.liprof-ph{width:68px;height:68px;border-radius:50%;object-fit:cover;object-position:50% 30%;flex:none;border:2px solid var(--sun);padding:2px;background:var(--ink)}
+.liprof-t{display:grid;gap:5px;min-width:0;flex:1 1 260px}
+.liprof-k{font-family:var(--f-mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--sun)}
+.liprof-t b{font-size:16px;font-weight:800;letter-spacing:-.015em;line-height:1.25}
+.liprof-t p{font-size:14px;line-height:1.55;color:var(--mute-ink);max-width:64ch}
+.liprof .btn{flex:none;margin-left:auto}
+@media (max-width:560px){.liprof{padding:16px}.liprof .btn{margin-left:0;width:100%}}
 
 .toast{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 22px);z-index:120;transform:translate(-50%,24px);opacity:0;pointer-events:none;padding:12px 20px;border-radius:999px;background:var(--on-ink);color:var(--ink);font-size:13px;font-weight:700;transition:transform .35s var(--ease),opacity .25s}
 .toast.on{transform:translate(-50%,0);opacity:1}
@@ -508,6 +588,7 @@ html.lb-open{overflow:hidden}
       <a href="#case">Case UX</a>
       <a href="#design">Design</a>
       <a href="#servicos">Serviços</a>
+      <a href="#planos">Planos</a>
       <a href="#contato">Contato</a>
     </div>
     <div class="nav-cta">
@@ -522,6 +603,7 @@ html.lb-open{overflow:hidden}
     <a href="#case">Case UX</a>
     <a href="#design">Design</a>
     <a href="#servicos">Serviços</a>
+    <a href="#planos">Planos</a>
     <a href="#contato">Contato</a>
   </div>
   <div class="progress" id="progress"></div>
@@ -619,8 +701,8 @@ html.lb-open{overflow:hidden}
     </div>
 
     <div class="stats">
-      <div class="stat rv"><span class="stat-n"><span data-count="20">20</span></span><span class="stat-l">repositórios públicos</span></div>
-      <div class="stat rv" style="--i:1"><span class="stat-n"><span data-count="27">27</span></span><span class="stat-l">seguidores no GitHub</span></div>
+      <div class="stat rv"><span class="stat-n"><span data-count="20" data-gh="repos">20</span></span><span class="stat-l">repositórios públicos</span></div>
+      <div class="stat rv" style="--i:1"><span class="stat-n"><span data-count="27" data-gh="followers">27</span></span><span class="stat-l">seguidores no GitHub</span></div>
       <div class="stat rv" style="--i:2"><span class="stat-n"><span data-count="4">4</span></span><span class="stat-l">frentes de estudo</span></div>
       <div class="stat rv" style="--i:3"><span class="stat-n"><span data-count="1">1</span></span><span class="stat-l">conquista Pull Shark</span></div>
     </div>
@@ -685,51 +767,63 @@ html.lb-open{overflow:hidden}
     <div class="sec-head">
       <p class="eyebrow rv"><span class="bar"></span>Projetos</p>
       <h2 class="h2 rv" style="--i:1">Código que está no GitHub.</h2>
-      <p class="lead rv" style="--i:2">Alguns repositórios públicos, direto do perfil YunJhinn. Passe o mouse para ver o brilho acompanhar o cursor.</p>
+      <p class="lead rv" style="--i:2">Os projetos principais e o último trabalho publicado, direto do perfil YunJhinn. Esta área se atualiza sozinha quando o GitHub muda. Passe o mouse para ver o brilho acompanhar o cursor.</p>
     </div>
 
-    <div class="grid-proj">
-      <a class="card card--lg card--feat rv" href="https://github.com/YunJhinn/login-base" target="_blank" rel="noopener noreferrer">
-        <div class="card-top"><span class="lang lang--js"><i></i>JavaScript</span><span class="arrow"><svg class="i"><use href="#i-ur"/></svg></span></div>
+    <div class="grid-proj" id="gh-grid">
+      <!-- ÚLTIMO TRABALHO: preenchido sozinho pelo GitHub (repositório com o push mais recente) -->
+      <a class="card card--lg card--feat rv" id="gh-latest" href="https://github.com/YunJhinn?tab=repositories&amp;sort=updated" target="_blank" rel="noopener noreferrer">
+        <div class="card-top"><span class="live off" id="gh-live"><i></i><span data-f="badge">Último trabalho</span></span><span class="arrow"><svg class="i"><use href="#i-ur"/></svg></span></div>
         <div class="card-body">
-          <h3 class="card-name">login-base</h3>
-          <p class="card-desc">Projeto completo que consome uma API, feito para uma empresa de construção de redes elétricas.</p>
+          <h3 class="card-name" data-f="name">Repositórios recentes</h3>
+          <p class="card-desc" data-f="desc">O último repositório que eu atualizo no GitHub aparece aqui automaticamente.</p>
+          <p class="gh-commit" data-f="commit" hidden></p>
         </div>
-        <div class="card-meta"><span><svg class="i"><use href="#i-starline"/></svg>1</span><span>Em destaque</span></div>
-      </a>
-      <a class="card card--md rv" style="--i:1" href="https://github.com/YunJhinn/cronogramas-backend" target="_blank" rel="noopener noreferrer">
-        <div class="card-top"><span class="lang lang--dart"><i></i>Dart</span><span class="arrow"><svg class="i"><use href="#i-ur"/></svg></span></div>
-        <div class="card-body">
-          <h3 class="card-name">cronogramas-backend</h3>
-          <p class="card-desc">Formulário desenvolvido com Flutter.</p>
-        </div>
-        <div class="card-meta"><span><svg class="i"><use href="#i-starline"/></svg>1</span><span><svg class="i"><use href="#i-fork"/></svg>1</span></div>
-      </a>
-      <a class="card card--sm rv" href="https://github.com/YunJhinn/Landing-page-Cineraria-Studio" target="_blank" rel="noopener noreferrer">
-        <div class="card-top"><span class="lang"><i></i>HTML</span><span class="arrow"><svg class="i"><use href="#i-ur"/></svg></span></div>
-        <div class="card-body">
-          <h3 class="card-name">Landing-page-Cineraria-Studio</h3>
-          <p class="card-desc">Landing page criada no curso Programador Web do SENAC-Goiás.</p>
+        <div class="card-meta">
+          <span class="lang m-lang" hidden><i></i><span data-f="lang"></span></span>
+          <span class="m-star" hidden><svg class="i"><use href="#i-starline"/></svg><span data-f="stars"></span></span>
+          <span class="m-fork" hidden><svg class="i"><use href="#i-fork"/></svg><span data-f="forks"></span></span>
+          <span class="m-when" data-f="when"></span>
         </div>
       </a>
-      <a class="card card--sm rv" style="--i:1" href="https://github.com/YunJhinn/Site-institucional-ufrj" target="_blank" rel="noopener noreferrer">
-        <div class="card-top"><span class="lang"><i></i>HTML</span><span class="arrow"><svg class="i"><use href="#i-ur"/></svg></span></div>
+
+      <!-- FIXADOS: YunDev, Cleone, Marcelo Construções e iLeva Challenge. O nome é procurado no seu GitHub (veja PINNED no script) -->
+      <a class="card card--md rv" style="--i:1" data-pin="yundev" href="https://github.com/YunJhinn?tab=repositories&amp;q=yundev" target="_blank" rel="noopener noreferrer">
+        <div class="card-top"><span class="lang m-lang"><i></i><span data-f="lang">GitHub</span></span><span class="arrow"><svg class="i"><use href="#i-ur"/></svg></span></div>
         <div class="card-body">
-          <h3 class="card-name">Site-institucional-ufrj</h3>
-          <p class="card-desc">Site institucional criado no curso Programador Web do SENAC-Goiás.</p>
+          <h3 class="card-name" data-f="name">YunDev</h3>
+          <p class="card-desc" data-f="desc">O projeto da marca YunDev: tecnologia que resolve de verdade.</p>
         </div>
+        <div class="card-meta"><span class="m-pin">Fixado</span><span class="m-star" hidden><svg class="i"><use href="#i-starline"/></svg><span data-f="stars"></span></span><span class="m-fork" hidden><svg class="i"><use href="#i-fork"/></svg><span data-f="forks"></span></span><span class="m-when" data-f="when"></span></div>
       </a>
-      <a class="card card--sm rv" style="--i:2" href="https://github.com/YunJhinn/maze" target="_blank" rel="noopener noreferrer">
-        <div class="card-top"><span class="lang"><i></i>HTML</span><span class="arrow"><svg class="i"><use href="#i-ur"/></svg></span></div>
+      <a class="card card--sm rv" data-pin="cleone" href="https://github.com/YunJhinn?tab=repositories&amp;q=cleone" target="_blank" rel="noopener noreferrer">
+        <div class="card-top"><span class="lang m-lang"><i></i><span data-f="lang">GitHub</span></span><span class="arrow"><svg class="i"><use href="#i-ur"/></svg></span></div>
         <div class="card-body">
-          <h3 class="card-name">maze</h3>
-          <p class="card-desc">Repositório em HTML no perfil do GitHub.</p>
+          <h3 class="card-name" data-f="name">Cleone</h3>
+          <p class="card-desc" data-f="desc">Projeto desenvolvido para o cliente Cleone.</p>
         </div>
+        <div class="card-meta"><span class="m-pin">Fixado</span><span class="m-star" hidden><svg class="i"><use href="#i-starline"/></svg><span data-f="stars"></span></span><span class="m-fork" hidden><svg class="i"><use href="#i-fork"/></svg><span data-f="forks"></span></span><span class="m-when" data-f="when"></span></div>
+      </a>
+      <a class="card card--sm rv" style="--i:1" data-pin="marcelo" href="https://github.com/YunJhinn?tab=repositories&amp;q=marcelo" target="_blank" rel="noopener noreferrer">
+        <div class="card-top"><span class="lang m-lang"><i></i><span data-f="lang">GitHub</span></span><span class="arrow"><svg class="i"><use href="#i-ur"/></svg></span></div>
+        <div class="card-body">
+          <h3 class="card-name" data-f="name">Marcelo Construções</h3>
+          <p class="card-desc" data-f="desc">Projeto desenvolvido para a Marcelo Construções.</p>
+        </div>
+        <div class="card-meta"><span class="m-pin">Fixado</span><span class="m-star" hidden><svg class="i"><use href="#i-starline"/></svg><span data-f="stars"></span></span><span class="m-fork" hidden><svg class="i"><use href="#i-fork"/></svg><span data-f="forks"></span></span><span class="m-when" data-f="when"></span></div>
+      </a>
+      <a class="card card--sm rv" style="--i:2" data-pin="ileva" href="https://github.com/YunJhinn?tab=repositories&amp;q=ileva" target="_blank" rel="noopener noreferrer">
+        <div class="card-top"><span class="lang m-lang"><i></i><span data-f="lang">GitHub</span></span><span class="arrow"><svg class="i"><use href="#i-ur"/></svg></span></div>
+        <div class="card-body">
+          <h3 class="card-name" data-f="name">iLeva Challenge</h3>
+          <p class="card-desc" data-f="desc">Desafio de API: iLeva Challenge.</p>
+        </div>
+        <div class="card-meta"><span class="m-pin">Fixado</span><span class="m-star" hidden><svg class="i"><use href="#i-starline"/></svg><span data-f="stars"></span></span><span class="m-fork" hidden><svg class="i"><use href="#i-fork"/></svg><span data-f="forks"></span></span><span class="m-when" data-f="when"></span></div>
       </a>
     </div>
 
     <div class="proj-more rv">
-      <p>São 20 repositórios públicos ao todo. Os outros estão no perfil.</p>
+      <p>São <span data-gh="repos" data-n="20">20</span> repositórios públicos ao todo. Os outros estão no perfil.</p>
       <a class="btn btn--ink" href="https://github.com/YunJhinn?tab=repositories" target="_blank" rel="noopener noreferrer">Ver todos no GitHub <svg class="i"><use href="#i-arrow"/></svg></a>
     </div>
   </div>
@@ -992,6 +1086,152 @@ html.lb-open{overflow:hidden}
   </div>
 </section>
 
+<!-- ============ PLANOS ============ -->
+<section class="sec sec--ink" id="planos">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow rv"><span class="bar"></span>Planos</p>
+      <h2 class="h2 rv" style="--i:1">Escolha seu ponto de partida.</h2>
+      <p class="lead rv" style="--i:2">Pacotes iniciais para presença digital, um especial para desenvolvedores, um plano sob medida e planos mensais opcionais de manutenção. Os valores são faixas: o preço final depende do escopo combinado.</p>
+    </div>
+
+    <div class="plans">
+
+      <!-- PACOTE 01 -->
+      <article class="plan rv">
+        <div class="plan-top"><span class="plan-n">Pacote 01</span><span class="plan-tag">Para começar</span></div>
+        <h3>Presença Digital</h3>
+        <div class="plan-price"><small>Faixa de valor</small><span class="plan-val"><sup>R$</sup>299–399</span></div>
+        <ul class="checks">
+          <li><svg class="i"><use href="#i-check"/></svg>Landing page profissional</li>
+          <li><svg class="i"><use href="#i-check"/></svg>Design adaptado para celular</li>
+          <li><svg class="i"><use href="#i-check"/></svg>Botão de contato pelo WhatsApp</li>
+          <li><svg class="i"><use href="#i-check"/></svg>Apresentação dos principais serviços</li>
+        </ul>
+        <a class="btn btn--ghost" href="https://wa.me/5562996110385" target="_blank" rel="noopener noreferrer" data-wa="Olá, Yun! Vim pelo seu portfólio e tenho interesse no Pacote 01 · Presença Digital.">Quero esse pacote <svg class="i"><use href="#i-arrow"/></svg></a>
+      </article>
+
+      <!-- PACOTE 02 (destaque em papel) -->
+      <article class="plan plan--feat rv" style="--i:1">
+        <div class="plan-top"><span class="plan-n">Pacote 02</span><span class="plan-tag">Para vender</span></div>
+        <h3>Vitrine Digital</h3>
+        <div class="plan-price"><small>Faixa de valor</small><span class="plan-val"><sup>R$</sup>399–699</span></div>
+        <ul class="checks">
+          <li><svg class="i"><use href="#i-check"/></svg>Catálogo de produtos ou cardápio digital</li>
+          <li><svg class="i"><use href="#i-check"/></svg>Identidade visual personalizada</li>
+          <li><svg class="i"><use href="#i-check"/></svg>Categorias, fotos e preços</li>
+          <li><svg class="i"><use href="#i-check"/></svg>Botões para pedidos e consultas pelo WhatsApp</li>
+        </ul>
+        <a class="btn btn--ink" href="https://wa.me/5562996110385" target="_blank" rel="noopener noreferrer" data-wa="Olá, Yun! Vim pelo seu portfólio e tenho interesse no Pacote 02 · Vitrine Digital.">Quero esse pacote <svg class="i"><use href="#i-arrow"/></svg></a>
+      </article>
+
+      <!-- PACOTE 03 -->
+      <article class="plan rv" style="--i:2">
+        <div class="plan-top"><span class="plan-n">Pacote 03</span><span class="plan-tag">Para crescer</span></div>
+        <h3>Presença Digital Completa</h3>
+        <div class="plan-price"><small>Faixa de valor</small><span class="plan-val"><sup>R$</sup>799–1.500+</span></div>
+        <ul class="checks">
+          <li><svg class="i"><use href="#i-check"/></svg>Site com várias páginas ou estrutura mais completa</li>
+          <li><svg class="i"><use href="#i-check"/></svg>Catálogo integrado à apresentação da empresa</li>
+          <li><svg class="i"><use href="#i-check"/></svg>Melhorias de UI/UX e SEO básico</li>
+          <li><svg class="i"><use href="#i-check"/></svg>Integrações e funcionalidades definidas no escopo</li>
+        </ul>
+        <a class="btn btn--ghost" href="https://wa.me/5562996110385" target="_blank" rel="noopener noreferrer" data-wa="Olá, Yun! Vim pelo seu portfólio e tenho interesse no Pacote 03 · Presença Digital Completa.">Quero esse pacote <svg class="i"><use href="#i-arrow"/></svg></a>
+      </article>
+
+      <!-- ESPECIAL DEVS -->
+      <article class="plan plan--half plan--dev rv">
+        <div class="plan-top"><span class="plan-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="plan-tag">Para devs</span></div>
+        <p class="plan-n">// Especial Devs</p>
+        <h3>Portfólio Digital</h3>
+        <p class="plan-desc">Seu portfólio de desenvolvedor em formato de landing page, para mostrar projetos e ser encontrado por recrutadores e clientes.</p>
+        <p class="plan-code"><b>const</b> portfolio = <span>"landing page"</span>;</p>
+        <div class="plan-price"><small>Faixa de valor</small><span class="plan-val"><sup>R$</sup>299–699</span></div>
+        <ul class="checks">
+          <li><svg class="i"><use href="#i-check"/></svg>Landing page de portfólio para desenvolvedores</li>
+          <li><svg class="i"><use href="#i-check"/></svg>Projetos com links para GitHub e demonstração</li>
+          <li><svg class="i"><use href="#i-check"/></svg>Stack, sobre você e formas de contato</li>
+          <li><svg class="i"><use href="#i-check"/></svg>Links para LinkedIn e currículo</li>
+          <li><svg class="i"><use href="#i-check"/></svg>Design adaptado para celular</li>
+        </ul>
+        <a class="btn btn--sun" href="https://wa.me/5562996110385" target="_blank" rel="noopener noreferrer" data-wa="Olá, Yun! Vim pelo seu portfólio e tenho interesse no pacote especial para devs: Portfólio Digital.">Quero meu portfólio <svg class="i"><use href="#i-arrow"/></svg></a>
+      </article>
+
+      <!-- PERSONALIZADO -->
+      <article class="plan plan--half plan--custom rv" style="--i:1">
+        <div class="plan-top"><span class="plan-n">Personalizado</span><span class="plan-tag">Sob medida</span></div>
+        <h3>Nenhum deles serve? Eu monto o seu.</h3>
+        <p class="plan-desc">Conte o que você precisa e a gente desenha o escopo juntos: páginas, funcionalidades, integrações e o que mais o projeto pedir.</p>
+        <div class="plan-price"><small>Valor</small><span class="plan-val plan-val--txt">Sob orçamento</span></div>
+        <ul class="checks">
+          <li><svg class="i"><use href="#i-check"/></svg>Escopo definido junto com você</li>
+          <li><svg class="i"><use href="#i-check"/></svg>Funcionalidades e integrações sob medida</li>
+          <li><svg class="i"><use href="#i-check"/></svg>Valor combinado de acordo com o projeto</li>
+        </ul>
+        <span class="hand">Do seu jeito.</span>
+        <a class="btn btn--ghost" href="https://wa.me/5562996110385" target="_blank" rel="noopener noreferrer" data-wa="Olá, Yun! Vim pelo seu portfólio e quero montar um plano personalizado.">Montar meu plano <svg class="i"><use href="#i-arrow"/></svg></a>
+      </article>
+
+    </div>
+
+    <p class="plans-note rv"><svg class="i"><use href="#i-star"/></svg>Valores iniciais em reais. O preço final depende do escopo combinado pelo WhatsApp.</p>
+
+
+    <!-- PLANOS MENSAIS (opcionais) -->
+    <div class="plans-sub" id="planos-mensais">
+      <div class="plans-sub-head">
+        <p class="plans-sub-k rv">// Plano mensal</p>
+        <h3 class="plans-sub-h rv" style="--i:1">Depois do site no ar, eu cuido dele.</h3>
+        <p class="plans-sub-p rv" style="--i:2">Além da criação, você pode contratar um plano mensal opcional para atualizações e suporte.</p>
+      </div>
+
+      <div class="plans">
+        <article class="plan plan--rec rv">
+          <div class="plan-top"><span class="plan-n">Mensal 01</span><span class="plan-tag">Ajustes</span></div>
+          <h3>Plano Básico</h3>
+          <div class="plan-price"><small>Por mês</small><span class="plan-val"><sup>R$</sup>79–99<em>/mês</em></span></div>
+          <ul class="checks">
+            <li><svg class="i"><use href="#i-check"/></svg>Pequenas alterações no site</li>
+            <li><svg class="i"><use href="#i-check"/></svg>Suporte limitado</li>
+          </ul>
+          <a class="btn btn--ghost" href="https://wa.me/5562996110385" target="_blank" rel="noopener noreferrer" data-wa="Olá, Yun! Vim pelo seu portfólio e tenho interesse no Plano mensal Básico.">Quero esse plano <svg class="i"><use href="#i-arrow"/></svg></a>
+        </article>
+
+        <article class="plan plan--rec rv" style="--i:1">
+          <div class="plan-top"><span class="plan-n">Mensal 02</span><span class="plan-tag">Atualizações</span></div>
+          <h3>Plano Intermediário</h3>
+          <div class="plan-price"><small>Por mês</small><span class="plan-val"><sup>R$</sup>149–199<em>/mês</em></span></div>
+          <ul class="checks">
+            <li><svg class="i"><use href="#i-check"/></svg>Atualizações periódicas de produtos, preços ou conteúdo</li>
+          </ul>
+          <a class="btn btn--ghost" href="https://wa.me/5562996110385" target="_blank" rel="noopener noreferrer" data-wa="Olá, Yun! Vim pelo seu portfólio e tenho interesse no Plano mensal Intermediário.">Quero esse plano <svg class="i"><use href="#i-arrow"/></svg></a>
+        </article>
+
+        <article class="plan plan--rec rv" style="--i:2">
+          <div class="plan-top"><span class="plan-n">Mensal 03</span><span class="plan-tag">Acompanhamento</span></div>
+          <h3>Plano Completo</h3>
+          <div class="plan-price"><small>Por mês</small><span class="plan-val"><sup>R$</sup>249–399<em>/mês</em></span></div>
+          <ul class="checks">
+            <li><svg class="i"><use href="#i-check"/></svg>Manutenção ampliada</li>
+            <li><svg class="i"><use href="#i-check"/></svg>Acompanhamento de desempenho</li>
+            <li><svg class="i"><use href="#i-check"/></svg>Escopo e limites definidos</li>
+          </ul>
+          <a class="btn btn--ghost" href="https://wa.me/5562996110385" target="_blank" rel="noopener noreferrer" data-wa="Olá, Yun! Vim pelo seu portfólio e tenho interesse no Plano mensal Completo.">Quero esse plano <svg class="i"><use href="#i-arrow"/></svg></a>
+        </article>
+      </div>
+
+      <p class="plans-note rv"><svg class="i"><use href="#i-star"/></svg>Hospedagem, domínio, ferramentas pagas, produção de fotos e gestão de anúncios podem ser cobrados separadamente.</p>
+    </div>
+  </div>
+</section>
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <div class="marquee-group"><span>Presença</span><svg class="i"><use href="#i-star"/></svg><span>Vitrine</span><svg class="i"><use href="#i-star"/></svg><span>Site completo</span><svg class="i"><use href="#i-star"/></svg><span>Portfólio dev</span><svg class="i"><use href="#i-star"/></svg><span>Sob medida</span><svg class="i"><use href="#i-star"/></svg><span>Presença</span><svg class="i"><use href="#i-star"/></svg><span>Vitrine</span><svg class="i"><use href="#i-star"/></svg><span>Site completo</span><svg class="i"><use href="#i-star"/></svg><span>Portfólio dev</span><svg class="i"><use href="#i-star"/></svg><span>Sob medida</span><svg class="i"><use href="#i-star"/></svg></div>
+    <div class="marquee-group"><span>Presença</span><svg class="i"><use href="#i-star"/></svg><span>Vitrine</span><svg class="i"><use href="#i-star"/></svg><span>Site completo</span><svg class="i"><use href="#i-star"/></svg><span>Portfólio dev</span><svg class="i"><use href="#i-star"/></svg><span>Sob medida</span><svg class="i"><use href="#i-star"/></svg><span>Presença</span><svg class="i"><use href="#i-star"/></svg><span>Vitrine</span><svg class="i"><use href="#i-star"/></svg><span>Site completo</span><svg class="i"><use href="#i-star"/></svg><span>Portfólio dev</span><svg class="i"><use href="#i-star"/></svg><span>Sob medida</span><svg class="i"><use href="#i-star"/></svg></div>
+  </div>
+</div>
+
 <!-- ============ CONTATO ============ -->
 <section class="sec sec--ink" id="contato">
   <div class="sun sun--c" data-par="0.1" aria-hidden="true"></div>
@@ -1039,6 +1279,7 @@ html.lb-open{overflow:hidden}
             <option>Manutenção de computadores e notebooks</option>
             <option>Montagem e consultoria de PCs</option>
             <option selected>Sites e landing pages</option>
+            <option>Planos e pacotes</option>
             <option>Suporte digital</option>
             <option>Projeto de desenvolvimento</option>
             <option>Design e identidade visual</option>
@@ -1061,6 +1302,15 @@ html.lb-open{overflow:hidden}
 <!-- ============ RODAPÉ ============ -->
 <footer class="foot">
   <div class="wrap">
+    <aside class="liprof rv" aria-label="Quem é o Yun Dev">
+      <img class="liprof-ph" src="data:image/jpeg;base64,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" width="68" height="68" alt="Foto de João Vitor Alves, o Yun Dev" loading="lazy" decoding="async">
+      <div class="liprof-t">
+        <span class="liprof-k">Quem sou eu</span>
+        <b>YunDev - João Vitor Alves</b>
+        <p>Desenvolvedor, designer UI/UX e estudante de Engenharia de Software. Faço sites, interfaces e sistemas com JavaScript, React e Python, e crio tecnologia que resolve de verdade.</p>
+      </div>
+      <a class="btn btn--ghost btn--sm" href="https://www.linkedin.com/in/joao-vitor-alves-yun-dev" target="_blank" rel="noopener noreferrer">Ver no LinkedIn <svg class="i"><use href="#i-linkedin"/></svg></a>
+    </aside>
     <div class="foot-in">
       <a class="logo" href="#topo" aria-label="YunDev, voltar ao topo">Yun<b>Dev</b></a>
       <span class="foot-sep" aria-hidden="true"></span>
@@ -1224,7 +1474,7 @@ html.lb-open{overflow:hidden}
     'case': function(){ return ['yun x joe: um guia para quem quer empreender (em produção)','16 entregáveis de ux e design thinking:','persona, stakeholders, jornada, benchmark, proposta de valor,','storyboard, sitemap, moodboard, roadmap e primeiro mvp.']; },
     sobre: function(){ return ['desenvolvedor e estudante de engenharia de software.','trabalho com javascript, react e python, e aplico técnicas de ui/ux.','disposto a aprender qualquer linguagem que o projeto pedir.','foco: tecnologia que resolve de verdade.']; },
     stack: function(){ return ['front-end   html5, css3, javascript, react, axios','back-end    python','dados       mysql, postgresql','mobile      flutter (dart)','ui/ux       ui design, ux, identidade visual','ferramentas postman, git, github','+           qualquer linguagem que o projeto pedir']; },
-    projetos: function(){ return ['login-base                     javascript','cronogramas-backend            dart','Landing-page-Cineraria-Studio  html','Site-institucional-ufrj        html','maze                           html','20 repositórios públicos no total.']; },
+    projetos: function(){ var g = window.YD_GH; if(g && g.lines && g.lines.length) return g.lines; return ['abra a seção projetos: os repositórios fixados e o último trabalho vêm direto do GitHub.']; },
     formacao: function(){ return ['UNIASSELVI           engenharia de software','SENAC-Goiás          programador web e fullstack','Udemy                programação fullstack','Data Science Academy programação fullstack']; },
     links: function(){ return [[{t:'github.com/YunJhinn',href:'https://github.com/YunJhinn'}],[{t:'linkedin.com/in/joao-vitor-alves-yun-dev',href:'https://www.linkedin.com/in/joao-vitor-alves-yun-dev'}],[{t:'portfólio de designs (drive)',href:'https://drive.google.com/drive/folders/1TuJ-4xxACM0PYU-hrrJHqENAV8h9l4UW'}]]; },
     contato: function(){ return ['email     yunjhinn@gmail.com',[ 'whatsapp  ', {t:'(62) 9 9611-0385',href:waLink('Olá, Yun! Vim pelo seu portfólio.')} ]]; }
@@ -1255,8 +1505,135 @@ html.lb-open{overflow:hidden}
     });
   });
 
+  /* ---- GitHub: projetos fixados + último trabalho (atualiza sozinho a cada visita) ---- */
+  (function(){
+    if(!window.fetch || !window.Promise) return;
+
+    /* ======== CONFIGURAÇÃO ======== */
+    var USER = 'YunJhinn';                  // seu usuário do GitHub
+    var TTL  = 10 * 60 * 1000;              // reaproveita a resposta por 10 min (evita estourar o limite da API)
+    var KEY  = 'yd_gh_v1';
+    var USE_GITHUB_DESC = true;             // true = usa a descrição do repositório; false = mantém o texto escrito no HTML
+    var IGNORE = [USER.toLowerCase(), USER.toLowerCase() + '.github.io']; // repositórios que não contam como "último trabalho"
+    /* Fixados: o nome do repositório é procurado pelo trecho (sem acento, sem maiúscula).
+       Se algum não for encontrado, informe o nome exato: { slot:'cleone', repo:'nome-exato-do-repo' } */
+    var PINNED = [
+      { slot:'yundev',  match:/yun[-_. ]?dev/ },
+      { slot:'cleone',  match:/cleone/ },
+      { slot:'marcelo', match:/marcelo/ },
+      { slot:'ileva',   match:/ileva/ }
+    ];
+    /* ============================== */
+
+    var LANG = {JavaScript:'#e6221c', Dart:'#2c73d0', TypeScript:'#3178c6', Python:'#3572a5', CSS:'#7a5cff', PHP:'#777bb3', Java:'#b07219', Kotlin:'#a97bff', 'C#':'#178600', Shell:'#89e051'};
+
+    function norm(s){ s = String(s || '').toLowerCase(); try{ s = s.normalize('NFD').replace(/[̀-ͯ]/g, ''); }catch(_){} return s; }
+    function ago(iso){
+      var s = (Date.now() - new Date(iso).getTime()) / 1000;
+      if(!isFinite(s)) return '';
+      if(s < 90) return 'agora há pouco';
+      var m = s / 60; if(m < 60) return 'há ' + Math.round(m) + ' min';
+      var h = m / 60; if(h < 23.5) return 'há ' + Math.round(h) + ' h';
+      var d = h / 24; if(d < 30){ d = Math.round(d); return 'há ' + d + (d === 1 ? ' dia' : ' dias'); }
+      var mo = d / 30.4; if(mo < 12){ mo = Math.round(mo); return 'há ' + mo + (mo === 1 ? ' mês' : ' meses'); }
+      var y = Math.round(d / 365); return 'há ' + y + (y === 1 ? ' ano' : ' anos');
+    }
+    function readCache(){ try{ var c = JSON.parse(localStorage.getItem(KEY)); return (c && c.user === USER) ? c : null; }catch(_){ return null; } }
+    function writeCache(d){ try{ localStorage.setItem(KEY, JSON.stringify(d)); }catch(_){} }
+
+    function get(path){
+      var ctl = ('AbortController' in window) ? new AbortController() : null, tm;
+      if(ctl) tm = setTimeout(function(){ ctl.abort(); }, 7000);
+      return fetch('https://api.github.com' + path, ctl ? {signal: ctl.signal} : undefined).then(function(r){
+        clearTimeout(tm);
+        if(!r.ok) throw new Error('github ' + r.status);
+        return r.json();
+      });
+    }
+    function slim(r){ return {name:r.name, url:r.html_url, desc:r.description, lang:r.language, stars:r.stargazers_count, forks:r.forks_count, pushed:r.pushed_at, fork:r.fork}; }
+    function byPushed(a, b){ return new Date(b.pushed) - new Date(a.pushed); }
+    function pickLatest(repos){
+      return repos.filter(function(r){ return !r.fork && IGNORE.indexOf(r.name.toLowerCase()) < 0; }).sort(byPushed)[0] || null;
+    }
+    function pickPinned(repos, rule){
+      var list = repos.filter(function(r){
+        return rule.repo ? r.name.toLowerCase() === rule.repo.toLowerCase() : rule.match.test(norm(r.name));
+      });
+      list.sort(function(a, b){ return (a.fork - b.fork) || byPushed(a, b); }); // prefere o que não é fork e o mais recente
+      return list[0] || null;
+    }
+
+    function fetchAll(){
+      return Promise.all([ get('/users/' + USER), get('/users/' + USER + '/repos?sort=pushed&per_page=100&type=owner') ]).then(function(a){
+        var data = {t: Date.now(), user: USER, repos: a[1].map(slim), count: a[0].public_repos, followers: a[0].followers, commit: null};
+        var last = pickLatest(data.repos);
+        if(!last) return data;
+        return get('/repos/' + USER + '/' + encodeURIComponent(last.name) + '/commits?per_page=1').then(function(cm){
+          if(cm && cm[0] && cm[0].commit){
+            data.commit = {repo: last.name, msg: String(cm[0].commit.message || '').split('\n')[0]};
+          }
+          return data;
+        }).catch(function(){ return data; });
+      });
+    }
+
+    function setT(card, f, txt){ var el = card.querySelector('[data-f="' + f + '"]'); if(el) el.textContent = txt; return el; }
+    function toggle(card, sel, on){ var el = card.querySelector(sel); if(el) el.hidden = !on; return el; }
+    function fill(card, r, forceDesc){
+      if(/^https:\/\/github\.com\//.test(r.url || '')) card.href = r.url;
+      setT(card, 'name', r.name);
+      if(forceDesc || (USE_GITHUB_DESC && r.desc)){
+        var d = setT(card, 'desc', r.desc || '');
+        if(d && forceDesc) d.hidden = !r.desc;
+      }
+      var lw = toggle(card, '.m-lang', !!r.lang);
+      if(lw){ setT(card, 'lang', r.lang || ''); var dot = lw.querySelector('i'); if(dot) dot.style.background = LANG[r.lang] || ''; }
+      toggle(card, '.m-star', r.stars > 0); setT(card, 'stars', r.stars);
+      toggle(card, '.m-fork', r.forks > 0); setT(card, 'forks', r.forks);
+      setT(card, 'when', 'atualizado ' + ago(r.pushed));
+      card.setAttribute('data-live', '1');
+    }
+    function setCount(key, n){
+      if(typeof n !== 'number') return;
+      $$('[data-gh="' + key + '"]').forEach(function(el){
+        if(el.hasAttribute('data-count')) el.setAttribute('data-count', n);
+        el.textContent = n;
+        setTimeout(function(){ el.textContent = n; }, 1300); // caso a animação do contador já tenha começado com o valor antigo
+      });
+    }
+
+    var lines = [];
+    function render(data, state){
+      var repos = data.repos || [];
+      /* fixados */
+      PINNED.forEach(function(rule){
+        var card = $('[data-pin="' + rule.slot + '"]'), r = pickPinned(repos, rule);
+        if(card && r){ fill(card, r, false); lines.push(r.name.padEnd(30) + (r.lang || '').toLowerCase()); }
+      });
+      /* último trabalho */
+      var card = $('#gh-latest'), last = pickLatest(repos);
+      if(card && last){
+        fill(card, last, true);
+        var live = $('#gh-live'); if(live) live.classList.toggle('off', state === 'stale');
+        setT(card, 'badge', state === 'stale' ? 'Último trabalho' : 'Último trabalho · direto do GitHub');
+        var ce = card.querySelector('[data-f="commit"]'), cm = data.commit && data.commit.repo === last.name ? data.commit : null;
+        if(ce){ ce.hidden = !cm; if(cm){ ce.textContent = 'último commit: ' + cm.msg; ce.title = cm.msg; } }
+        lines.push('', 'último trabalho: ' + last.name);
+      }
+      /* contadores */
+      setCount('repos', data.count);
+      setCount('followers', data.followers);
+      if(typeof data.count === 'number') lines.push(data.count + ' repositórios públicos no total.');
+      window.YD_GH = {lines: lines};
+    }
+
+    var cached = readCache();
+    if(cached && Date.now() - cached.t < TTL){ render(cached, 'cache'); return; }
+    fetchAll().then(function(d){ writeCache(d); render(d, 'live'); }).catch(function(){ if(cached) render(cached, 'stale'); });
+  })();
+
   /* ---- brilho dos cards de projeto ---- */
-  $$('.card').forEach(function(c){
+  $$('.card, .plan').forEach(function(c){
     c.addEventListener('pointermove', function(e){
       var r = c.getBoundingClientRect();
       c.style.setProperty('--mx', (e.clientX - r.left) + 'px'); c.style.setProperty('--my', (e.clientY - r.top) + 'px');
